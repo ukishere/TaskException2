@@ -15,22 +15,19 @@ directories = {
 }
 
 def print_all_names_by_documents():
-    found = False
     print('Имена всех владельцев документов, хранящихся в архиве:')
     for directory in directories.values():
         for each_document in directory:
-            found = False
+            found = False # Переменная нужна для случая, если номер документа присутвует в directories, но отсутствует в documents.
             for document in documents:
                 try:
                     if document["number"] == each_document:
-                        print(f'{document["name"]} - владелец документа {each_document}')
                         found = True
+                        print(f'{document["name"]} - владелец документа {each_document}')
                 except KeyError:
                     print(f'У документа {each_document} не указан владелец')
-                    found = True
             if not found:
                 print(f'Для документа {each_document} отсутствует запись')
-                found = True
 
 while True:
     input_command = input("Введите команду: ")
